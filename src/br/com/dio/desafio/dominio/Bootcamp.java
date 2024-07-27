@@ -3,6 +3,7 @@ package br.com.dio.desafio.dominio;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ public class Bootcamp {
     private final LocalDate dataFinal = dataInicial.plusDays(45);
     private Set<Dev> devsInscritos = new HashSet<>();
     private Set<Conteudo> conteudos = new LinkedHashSet<>();
-
+    private List<Cronograma> cronogramas;
 
     public String getNome() {
         return nome;
@@ -55,16 +56,32 @@ public class Bootcamp {
         this.conteudos = conteudos;
     }
 
+    public List<Cronograma> getCronogramas() {
+        return cronogramas;
+    }
+
+    public void setCronogramas(List<Cronograma> cronogramas) {
+        this.cronogramas = cronogramas;
+    }
+
+    public void adicionarCronograma(Cronograma cronograma) {
+        this.cronogramas.add(cronograma);
+    }
+
+    public void removerCronograma(Cronograma cronograma) {
+        this.cronogramas.remove(cronograma);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bootcamp bootcamp = (Bootcamp) o;
-        return Objects.equals(nome, bootcamp.nome) && Objects.equals(descricao, bootcamp.descricao) && Objects.equals(dataInicial, bootcamp.dataInicial) && Objects.equals(dataFinal, bootcamp.dataFinal) && Objects.equals(devsInscritos, bootcamp.devsInscritos) && Objects.equals(conteudos, bootcamp.conteudos);
+        return Objects.equals(nome, bootcamp.nome) && Objects.equals(descricao, bootcamp.descricao) && Objects.equals(dataInicial, bootcamp.dataInicial) && Objects.equals(dataFinal, bootcamp.dataFinal) && Objects.equals(devsInscritos, bootcamp.devsInscritos) && Objects.equals(conteudos, bootcamp.conteudos) && Objects.equals(cronogramas, bootcamp.cronogramas);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, descricao, dataInicial, dataFinal, devsInscritos, conteudos);
+        return Objects.hash(nome, descricao, dataInicial, dataFinal, devsInscritos, conteudos, cronogramas);
     }
 }
